@@ -1,14 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Flow</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+	<meta charset="utf-8" />
+	
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+  <title><%= content_for?(:title) ? "Flow App | "+yield(:title) : "Flow App" %></title>
+
+  <!-- Included CSS Files -->
+  <%= stylesheet_link_tag    "application" %>
+
+  <!-- Included JS Files for colorbox  -->
+  <%= javascript_include_tag "header" %>
+ 
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<%= yield %>
+<body>
+  <%= render 'layouts/header' %>
+
+  <div class="container">
+
+    <!-- Flash notice-->
+    <div class="row">
+      <div class="span12">
+        <div id="application_flash">
+        <% flash.each do |key,value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+
+  <%= yield %>
+  
+  <%= render 'layouts/footer' %>
+  
+  <%= debug(params.inspect) if Rails.env.development?%>
+  
+  </div>
+
+    <!-- Included JS Files  -->
+  <%= javascript_include_tag "application" %>
+
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.js"></script>
+
 
 </body>
 </html>

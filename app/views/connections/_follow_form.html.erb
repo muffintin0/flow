@@ -1,0 +1,5 @@
+<%= form_for current_user.connections.build, remote:true do |f| %>
+	<!-- require the following user object passed in-->
+	<%= f.hidden_field :user_id, value:user.id %>
+	<%= f.submit ' Follow ', class:'btn btn-primary connection_btns' %>
+<% end %>

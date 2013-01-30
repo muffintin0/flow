@@ -1,0 +1,18 @@
+
+<% provide(:title, "Home") %>
+
+<div class="row">
+
+	<!-- span2 -->
+	<%= render 'users/vertical_profile', user:current_user %>
+	<!-- add micropost form if is current_user, span10 -->
+	<%= render 'microposts/form' %>
+  
+</div>
+
+<h3>Micropost feeds</h3>
+<hr>
+
+<!-- A partial shared by home page and show page, all instance variables are passed in -->
+<%= render 'users/microposts_main' %>
+

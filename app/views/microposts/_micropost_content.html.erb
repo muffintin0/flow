@@ -1,0 +1,49 @@
+<!--<p>
+  <%= micropost.body_html %>
+  <% if micropost.micropost_images.any? %>
+    <% image_index=0 %>
+    <ul class="thumbnails">
+    <% micropost.micropost_images.each do |image| %>
+      <% image_index+=1 %>
+      <li class="span2">
+      <%= link_to image_tag(image.image_url), image.image_url, class: "#{current_user.username}_micropost#{micropost.id}_images thumbnail"  %>
+      </li>
+      <% if image_index%5==0 %>
+        </ul>
+        <ul class="thumbnails">       
+      <% end %>
+    <% end %>
+    </ul>
+  <% end %>
+</p>
+<small style="color: gray;">
+  <i>Created at: <%= time_ago_in_words(micropost.created_at)%></i>
+</small>
+<span class="pull-right">
+  <%= link_to "Comments(#{micropost.comments.count})", micropost_comments_path(micropost.id), remote:true, id:"micropost_comment_revealer#{micropost.id}"%>
+
+  <% if delete_micropost_privilege?(micropost) %>
+    &nbsp;|&nbsp;
+    <%= link_to "delete", micropost, :method => :delete, :confirm => "Are you sure to delete the post?", class:'btn' %>
+  <% end %>
+</span>
+
+<div id="micropost_comments<%= micropost.id %>" 
+  style="margin-top: 10px; display:none;">
+  <div id="micropost_comments<%= micropost.id %>_form">
+  </div>
+  <div id="micropost_comments<%= micropost.id %>_info" style="display:none;">
+  </div>
+  <div id="show_micropost_comments<%= micropost.id %>">
+  </div>
+</div> -->
+
+<script>
+
+  $(document).ready(function(){
+    $("a.<%= current_user.username%>_micropost<%=micropost.id%>_images").colorbox({rel:'<%= current_user.username%>_micropost<%=micropost.id%>_images',maxWidth:"600px", });
+  });
+  
+</script>
+
+<%= micropost_content(micropost) %>

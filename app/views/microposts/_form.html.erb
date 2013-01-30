@@ -1,0 +1,58 @@
+<!--
+// <script>
+//   $(document).ready(function(){
+//     $('#new_micropost_form').find('textarea').bind('hastext', function () {
+//     	if ( $('#new_micropost_form input[name="submittingImage"]').val() == 'no' ){
+//       	$('#new_micropost_form').find(':submit').removeClass('disabled').attr('disabled', false);
+//       }
+//     });
+            
+//     $('#new_micropost_form').find('textarea').bind('notext', function () {
+//       $('#new_micropost_form').find(':submit').addClass('disabled').attr('disabled', true);
+//     });
+
+//   });  
+// </script> -->
+
+
+<div class="span10">
+	<% @micropost=Micropost.new %>
+
+
+	<%= form_for @micropost, html:{id:'new_micropost_form'} do |f| %>
+		<%= f.text_area(:body,rows:5,style:'width:98.1%',placeholder:'What is on your mind?', required:'required',title:'Tip: you can paste links for images and youtube videos directly here') %>
+		<br>
+		<div class="pull-right">
+
+		 <a href="#addImageModal" class="btn btn-info micropost_form_btns" role="button" data-toggle="modal" id="add_image">Add Images</a>
+		 <input type='hidden' name='submittingImage' value='no' />
+
+		<button class="btn btn-info micropost_form_btns" type="button" id="add_video">Add Videos</button>
+		<%= f.submit '  Publish Post  ',class:'btn btn-primary micropost_form_btns', disabled:'disabled' %>
+		</div>
+	<% end %>
+
+	<div id='addImageModal' class="modal hide fade" tabindex="-1" role="dialog">
+		<div class="modal-header">
+    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    	<h3 id="addImageModalLabel">Select all image(s) here ...</h3>
+  	</div>
+
+  	<div class="modal-body">
+			<%= s3_uploader_form post: micropost_images_url, as: "micropost_image[image_url]", id: "imageS3Uploader" do %>
+		  	<%= file_field_tag :file, multiple: true %>
+			<% end %>
+
+			<script id="template-upload" type="text/x-tmpl">
+				<div class="upload">
+					{%=o.name%}
+					 <div class="progress"><div class="bar" style="width: 0%"></div></div>
+				</div>
+			</script>
+		</div>
+		<div class="modal-footer">
+			<small>Wait for adding images finished before publishing post</small>&nbsp;
+			<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Finish</button>
+		</div>
+	</div>
+</div>

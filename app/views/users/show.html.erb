@@ -1,0 +1,27 @@
+<div class="row">
+	<% if @user == current_user %>
+		<!-- span2 -->
+		<%= render 'users/vertical_profile', user:@user %>
+		<!-- add micropost form if is current_user, span10 -->
+		<%= render 'microposts/form' %>
+	<% else %>
+		<!-- span 4 -->
+		<%= render 'users/horizontal_profile', user:@user %>
+		<!-- Add the follow/unfollow button if is other user-->
+		<div class="pull-right">
+			<%= render 'users/connection_action_form', user:@user%>
+		</div>
+	<% end %>
+</div>
+
+<hr>
+
+<% if @user == current_user %>
+	<h3>All your microposts</h3>
+<% else %>
+	<h3>All <%= @user.username %>'s microposts</h3>
+<% end %>
+<br>
+
+<!-- A partial shared by home page and show page, all instance variables are passed in -->
+<%= render 'users/microposts_main' %>

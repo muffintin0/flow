@@ -1,0 +1,10 @@
+<div class="span1">
+  <%= link_to gravatar_for(current_user, size:50), current_user %>
+</div>
+<div class="span1" style="font-size: 50%">
+  <b style="font-size: 120%"><%= current_user.name %></b><br>
+  <a href="/fans"><span id="top_user_bar_fans_count"><%= current_user.fans.count %></span> fans</a> <br>
+  <a href="/followings"><span id="top_user_bar_stars_count"><%= current_user.stars.count %></span> followings</a>
+  <%= link_to "#{current_user.microposts.count} microposts", user_path(current_user.id) %>
+</div>
+

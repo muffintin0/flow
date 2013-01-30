@@ -7,6 +7,7 @@ gem 'rails', '3.2.11'
 
 gem 'sqlite3'
 
+gem 'bootstrap-sass', '~> 2.2.2.0'
 gem 'faker','1.0.1'
 gem 'will_paginate','3.0.3'
 gem 'bootstrap-will_paginate','0.0.6'
@@ -17,7 +18,8 @@ gem "devise"
 gem "rails-backbone"
 gem 'sidekiq'
 gem 's3_direct_upload'
-
+gem 'thin'
+gem 'private_pub'
 
 # Gems used only for assets and not required
 # in production environments by default.

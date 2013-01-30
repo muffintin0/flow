@@ -1,0 +1,13 @@
+
+<div class="row">
+<!-- this is span1 -->
+<%= render 'users/icon', user:micropost.user %>
+
+<div class="span11">
+	<%= link_to micropost.user.username, micropost.user, {class:'micropost_user_link'}%><br>
+  <%= render 'microposts/micropost_content', micropost:micropost %>
+</div>
+
+</div>
+
+<hr>

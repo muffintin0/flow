@@ -1,0 +1,107 @@
+<%= subscribe_to "/messages/public" %>
+<%= subscribe_to "/messages/private/#{current_user.username}" %>
+
+<script>
+  $(function() {
+    // Create a new client to connect to Faye
+    //var client = new Faye.Client('http://localhost:9292/faye');
+    // Subscribe to the public channel
+    var public_subscription = PrivatePub.subscribe('/messages/public', function(data) {
+      $('<p></p>').html('<strong>'+data.username + "</strong>: " + data.msg + "<br><small><i>sent at: "+data.pub_time+"</i></small>").appendTo('#chat_room');
+    });
+    // Our own private channel
+    var private_subscription = PrivatePub.subscribe('/messages/private/<%= current_user.username %>', function(data) {
+      $('<p></p>').addClass('private').html('<strong>'+data.username + "</strong>: " + data.msg + "<br><small><i>sent at: "+data.pub_time+"</i></small>").appendTo('#chat_room');
+    });
+    // Handle form submissions and post messages to faye
+    // $('#new_message_form').submit(function(){
+    //   // Is it a private message?
+    //   if (matches = $('#message').val().match(/@(.+) (.+)/)) {
+    //     client.publish('/messages/private/' + matches[1], {
+    //       username: '<%= current_user.username %>',
+    //       msg: matches[2]
+    //     });
+    //   }
+    //   else {
+    //     // It's a public message
+    //     client.publish('/messages/public', {
+    //       username: '<%= current_user.username %>',
+    //       msg: $('#message').val()
+    //     });
+    //   }
+    //   // Clear the message box
+    //   $('#message').val('');
+    //   // Don't actually submit the form, otherwise the page will refresh.
+    //   return false;
+    // });
+
+    $('.chat_link').click(function(e){
+        e.preventDefault();
+        $('#chat_room_info').html('Chatting with <strong>'+$(this).text()+'</strong>'+'<br><br>');
+        $('#chat_form').find('#recipient').attr('value',$(this).text());
+        //$('#chat_form').find(':submit').removeClass('disabled').attr('disabled', false);
+    });
+
+    //check user in the chat room every 30s
+    var in_room = setInterval(function(){
+      $.post('/users/update_last_chat_time');
+    },30000);  
+
+    $('#close_recent_messages').click(function(e){
+      e.preventDefault();
+      $('.unread_messages').fadeOut(3000);
+    })
+
+    $('.reply_unread_message').click(function(e){
+      e.preventDefault();
+      $('#chat_room_info').html('Chatting with <strong>'+$(this).attr('href')+'</strong>'+'<br><br>');
+      $('#chat_form').find('#recipient').attr('value',$(this).attr('href'));
+    })
+
+  });
+</script>
+
+<div class="row">
+  <div class="span7">
+    <div class="unread_messages">  
+    <% @unread_messages=unread_messages(current_user) %>
+    <% if @unread_messages && @unread_messages.any? %>
+      New messages since you are last here:   <button id="close_recent_messages" class="btn btn-small btn-inverse pull-right">Close</button><br><br>
+      <div class="well">
+        <% @unread_messages.each do |unread_message| %>
+          <%= unread_message.sender.username %>: <%= unread_message.body %> &nbsp;&nbsp;&nbsp;&nbsp;<a class="reply_unread_message btn btn-small" href="<%= unread_message.sender.username %>">Reply</a><br>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+	<%= form_tag new_message_path, :remote => true, id:'chat_form' do %>
+	  <%= text_field_tag :message, '',class:'input-xxlarge' %>
+      <%= hidden_field_tag :recipient, 'public' %>
+	  <%= submit_tag "Send", class:'btn btn-primary' %>
+	<% end %>
+    <br>
+    <div id="chat_room" style="border:silver 1px solid; height:400px; overflow:scroll;">
+      <div id="chat_room_info">
+      To start private conversion, click a friend's name on the right. <br>
+      Current is in public channel. Friends online will see your message. 
+      </div>
+      <br>
+    </div>
+  </div>
+  <div class="span4 offset1">
+    <!-- use ajax update -->
+    <h4>Friends List</h4>
+    <% current_user.friends.each do |friend| %>
+      <%= gravatar_for(friend, size:30) %>
+      <%= link_to friend.username, '#', class:'chat_link' %>
+      <span id="friend<%=friend.id%>_online_status">
+        <% if friend.last_activity_time && (friend.last_activity_time > 1.minutes.ago) %>
+          <strong>online</strong>
+        <% else %>
+          offline
+        <% end %>
+      </span>
+      <hr>
+    <% end %>
+  </div>
+</div>

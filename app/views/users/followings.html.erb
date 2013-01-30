@@ -1,0 +1,19 @@
+<h3><%=@person.username%> has <span class="user_followings_count"><%= pluralize(@person.followings.count,'following')%></span></h3>
+
+<div id='users_content'>
+<%= render @users %>
+</div>
+
+<% unless @offset == -1 %> 
+	<div class='row' id="more_user_row">
+		<div class='span2 center'>
+			<%= form_tag({controller:"users",action:"morefollowings"},method:"post",remote:true) do %>
+				<div id="more_user_offset">
+				<%= hidden_field_tag 'offset', @offset %>
+				</div>
+				<%= hidden_field_tag 'id', @person.username %>
+				<%= submit_tag('More ...', class:'btn btn-large btn-primary') %>
+			<% end %>
+		</div>
+	</div>
+<% end %>

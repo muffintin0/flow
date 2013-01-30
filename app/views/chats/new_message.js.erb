@@ -1,0 +1,6 @@
+// Clear message input
+$('#message').val('');
+// Send the message
+<% @channels.each do |channel| %>
+	<% publish_to channel, @message %>
+<% end %>

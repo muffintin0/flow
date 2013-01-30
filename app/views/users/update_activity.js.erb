@@ -1,0 +1,12 @@
+// add new message notification
+<% if unread_messages(current_user) && unread_messages(current_user).size > 0 %>
+	$('#chat_status').text("Chat(<%= unread_messages(current_user).size %>)");
+<% end %>
+
+<% current_user.friends.each do |friend| %>
+	<% if friend.last_activity_time && (friend.last_activity_time > 1.minutes.ago) %>
+  	$("#friend<%=friend.id%>_online_status").html("<strong>online</strong>")      
+  <% else %>
+    $("#friend<%=friend.id%>_online_status").html("offline")
+	<% end %>
+<% end %>

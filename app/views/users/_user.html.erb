@@ -1,0 +1,35 @@
+<div class="row">
+<div class="span3">
+	<div class="row">
+		<div class="span1">
+			<%= gravatar_for(user, size:100) %>
+
+		</div>
+		<div class="span2">
+				<%= render 'users/user_profile', user:user %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span3">
+		<% unless current_user === user %>
+			<div style="clear:both; padding-top:5px;">		
+				<%= render 'users/connection_action_form', user:user %>
+			</div>
+		<% end %>
+		</div>
+	</div>
+</div>
+
+<div class="span9">
+	<p><i>latest micropost:</i> <br>
+		<div class="well">
+		<% if user.microposts.any? %>
+			<%= render 'microposts/micropost_content', micropost:user.microposts.first %>
+		<% else %>
+			<%= user.username %> has not published any micropost yet.
+		<% end %>
+		</div>
+	</p>
+</div>
+</div>
+<hr>

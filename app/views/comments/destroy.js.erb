@@ -1,0 +1,4 @@
+$("#micropost_comments<%= @comment.micropost.id %>_info").html("<span class='alert alert-notice'>comment Deleted</span>").fadeIn().fadeOut(3000);
+$("#micrpost<%= @comment.micropost.id %>_comment<%= @comment.id %>").hide();
+//update comments count
+$("#micropost<%=@comment.micropost.id%>_options .micropost_comment_revealer").text("Comments(<%= @comment.micropost.comments.count%>)");

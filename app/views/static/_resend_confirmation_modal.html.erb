@@ -1,0 +1,19 @@
+<div id="resend_confirmation_modal" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Resend confirmation instructions</h3>
+	</div>
+
+	<div class="modal-body">
+		<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+		  <%= devise_error_messages! %>
+
+		  <div>
+		  	<%= f.label :email, style:'display:inline;' %>&nbsp;&nbsp;&nbsp;
+		  	<%= f.email_field :email, placeholder:'Enter email address', style:'display:inline;' %>
+		  </div>
+
+		  <div><%= f.submit "Resend confirmation instructions", class:'btn btn-inverse' %></div>
+		<% end %>
+	</div>
+</div>

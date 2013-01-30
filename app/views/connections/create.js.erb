@@ -1,0 +1,2 @@
+$(".connection_action").html("<%= escape_javascript(render('connections/unfollow_form',user:@user))%>");
+$('#application_flash').html("<div class='alert alert-notice' id='connection_message'>You are now following <b><%= @user.username%></b>.</div>").fadeIn().fadeOut(3000);

@@ -1,0 +1,21 @@
+<div id="microposts_content">
+<%= render @microposts %>
+</div>
+
+<% unless @offset == -1 %> 
+	<div class='row' id="more_post_row">
+		<div class='span2 center'>
+			<%= form_tag(moreposts_user_path(current_user),remote:true) do %>
+				<div id="more_post_offset">
+				<%= hidden_field_tag 'offset', @offset %>
+				</div>
+				<%= hidden_field_tag 'category', 'feeds' %>
+				<%= submit_tag('More Micropsots ...', class:'btn btn-large btn-primary') %>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+
+<!-- repost modal -->
+<div id='repostModal' class='modal hide fade' tabindex="-1" role='dialog'>
+</div>

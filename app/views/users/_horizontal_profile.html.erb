@@ -1,0 +1,11 @@
+<div class="span2">
+		<%= gravatar_for(user, size:160) %>
+</div>
+
+<div class="span4">
+	<b><%= link_to user.username, user, {class:'micropost_user_link',style:"font-size: 150%"}%></b><br>
+	<%= link_to  ("<span class='user_followings_count'>"+pluralize(user.followings.count,'following')+"</span>").html_safe, followings_user_path(user) %><br>
+	<%= link_to  ("<span class='user_followers_count'>"+pluralize(user.followers.count,'follower')+"</span>").html_safe, followers_user_path(user) %><br>
+	 <%= link_to ("<span class='user_microposts_count'>"+pluralize(user.microposts.count,'micropost')+"</span>").html_safe , user_path(user) %>
+</div>
+

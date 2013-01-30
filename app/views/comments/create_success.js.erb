@@ -1,0 +1,4 @@
+$("#show_micropost_comments<%= @comment.micropost.id %>").prepend("<%= escape_javascript(render(@comment))%>");
+$("#micropost_comments<%= @comment.micropost.id%>_form .new_comment_textarea").val('');
+//update comments count
+$("#micropost<%=@comment.micropost.id%>_options .micropost_comment_revealer").text("Comments(<%= @comment.micropost.comments.count%>)"); 

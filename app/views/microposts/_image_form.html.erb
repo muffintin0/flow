@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3>Add images to post</h3>
+</div>
+
+<div class="modal-body">
+<% index=0 %>
+<div class="row">
+  <div class="span3">
+  <h4>From local storage</h4>
+  </div>
+  <div class="span3">
+  <h4>From internet (Paste image url)</h4>
+  </div>
+</div>
+
+<%= f.fields_for :micropost_images do |micropost_image_form| %>
+  <% if index<6 %>
+    <% if index%2 == 0 %>
+      <div class="row">
+        <div class="span3"> 
+          <%= micropost_image_form.file_field :image%>
+        </div>
+    <% else %>
+        <div class="span3">
+          <%= micropost_image_form.text_field :remote_image_url %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <% if index%2 == 0 %>
+      <div class="row new_post_add_more_image_fields" style="display:none;">
+        <div class="span3"> 
+          <%= micropost_image_form.file_field :image%>
+        </div>
+    <% else %>
+        <div class="span3">
+          <%= micropost_image_form.text_field :remote_image_url %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <% index+=1 %> 
+<% end %>
+
+<p>
+  <button class='btn btn-info' type="button" id="new_post_add_more_image_button"><i class="icon-picture icon-white"></i> More Images ...</button>
+</p>
+</div>
+
+<div class="modal-footer">
+  The images will be uploaded when you publish the post&nbsp;&nbsp;&nbsp;
+  <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Finish</button>
+</div>

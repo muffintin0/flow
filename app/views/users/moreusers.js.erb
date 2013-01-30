@@ -1,0 +1,9 @@
+
+$("#users_content").append("<%= escape_javascript(render @users)%>");
+
+var offset = parseInt("<%= @offset %>");
+if (offset == -1 ){
+	$('#more_user_row').hide();
+} else {
+$("#more_user_offset").html("<%= escape_javascript(hidden_field_tag 'offset', @offset ) %>")
+}

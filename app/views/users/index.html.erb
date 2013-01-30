@@ -1,0 +1,18 @@
+<h2>All Users</h2>
+
+<div id='users_content'>
+<%= render @users %>
+</div>
+
+<% unless @offset == -1 %> 
+	<div class='row' id="more_user_row">
+		<div class='span2 center'>
+			<%= form_tag({controller:"users",action:"moreusers"},method:"post",remote:true) do %>
+				<div id="more_user_offset">
+				<%= hidden_field_tag 'offset', @offset %>
+				</div>
+				<%= submit_tag('More ...', class:'btn btn-large btn-primary') %>
+			<% end %>
+		</div>
+	</div>
+<% end %>

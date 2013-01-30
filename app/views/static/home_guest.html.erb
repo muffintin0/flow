@@ -1,0 +1,35 @@
+<% provide(:title, "Home") %>
+
+<div class='hero-unit'>
+  <h1>Flow</h1>
+  <p class="lead">
+    Collect all the information you needed. Bookmark
+    your favoriate websites and share latest news with friends. 
+  </p>
+  <p>
+    <a href="#sign_up_modal" role="button" class="btn btn-large btn-primary" data-toggle="modal" style="font-size: 140%;">Sign up</a>
+    <!--
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-large btn-primary" %>
+    -->
+  </p>
+  Already have an account?
+  <a href="#sign_in_modal" data-toggle="modal">Sign in here</a>
+  <!--
+  Already have an account? <%= link_to "Sign in here", new_user_session_path %> -->
+</div>
+
+<div class="row">
+  <div class="span6">
+    <p style="text-align: center" class="well">To come</p>   
+  </div>
+  
+  <div class="span6">
+    <p style="text-align: center" class="well">To come</p>
+  </div>  
+</div>
+
+<!-- sign up modal form -->
+<%= render 'static/sign_up_modal' %>
+
+<!-- sign in modal form -->
+<%= render 'static/sign_in_modal' %>

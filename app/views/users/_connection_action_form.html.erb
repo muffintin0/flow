@@ -1,0 +1,7 @@
+<div class="connection_action">	
+	<% if current_user.following?(user) %>
+		<%= render 'connections/unfollow_form', user:user %>
+	<% else %>
+		<%= render 'connections/follow_form', user:user %>
+	<% end %>
+</div>

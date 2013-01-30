@@ -1,0 +1,30 @@
+
+$("#microposts_content").append("<%= escape_javascript(render @microposts)%>");
+
+$('.user_popover').popover({
+  offset: 10,
+  trigger: 'manual',
+  animate: true,
+  html: true,
+  placement: 'right',
+  template: '<div class="popover" onmouseover="clearTimeout(timeoutObj);$(this).mouseleave(function() {$(this).hide(); });"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+
+}).click(function(e) {
+    e.preventDefault() ;
+}).mouseenter(function(e) {
+    $(this).popover('show');
+}).mouseleave(function(e) {
+  var ref = $(this);
+  timeoutObj = setTimeout(function(){
+      ref.popover('hide');
+  }, 50)});
+  
+
+var offset = parseInt("<%= @offset %>");
+if (offset == -1 ){
+	$('#more_post_row').hide();
+} else {
+$("#more_post_offset").html("<%= escape_javascript(hidden_field_tag 'offset', @offset ) %>")
+$("#more_post_row form :submit").val("More Micropsots ...");
+}
+

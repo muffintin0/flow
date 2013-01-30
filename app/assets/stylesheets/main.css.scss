@@ -1,0 +1,56 @@
+@mixin box_sizing {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.debug_dump {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin-top: 45px;
+	@include box_sizing;
+}
+
+.error {
+	color: red;
+}
+
+.center {
+	float: none;
+	margin-left:auto;
+	margin-right:auto;	
+}
+
+.micropost_user_link {
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+
+	&:hover {
+		color: blue;
+		text-decoration: none;
+	}
+}
+
+.micropost_form_btns{
+	font-weight:bold;
+	font-size:110%;
+	padding:10px;
+	margin:1px;
+}
+
+.connection_btns {
+	font-weight:bold;
+	font-size:150%;
+	padding:10px 20px;
+	margin:1px;
+}
+
+iframe {
+	display:block;
+}
+
+.popover, .popover-title {
+	background-color:white;
+}

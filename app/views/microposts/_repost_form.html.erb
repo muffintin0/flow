@@ -1,0 +1,34 @@
+<script>
+$(document).ready(function(){
+
+	$('#repost_form').find('textarea').bind('hastext', function () {
+	  $('#repost_form').find(':submit').removeClass('disabled').attr('disabled', false);
+	});
+	        
+	$('#repost_form').find('textarea').bind('notext', function () {
+	  $('#repost_form').find(':submit').addClass('disabled').attr('disabled', true);
+	});
+
+});  
+</script>
+
+<% @repost=Micropost.new %>
+
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 id="myModalLabel">Repost</h3>
+</div>
+
+<div class="modal-body">
+<div class="well"><%= original_post.body_html %></div>
+
+<%= form_for @repost, html:{id:'repost_form'} do |f| %>
+	<%= f.hidden_field :original_post_id, value: original_post.id %>
+	<%= f.text_area(:body,rows:5,style:'width:95%',placeholder:'What is on your mind?', required:'required') %>
+	<br>
+	<div class="pull-right">
+	<%= f.submit '  Repost  ',class:'btn btn-primary', disabled:'disabled' %>
+	</div>
+<% end %>
+
+</div>

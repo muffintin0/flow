@@ -1,0 +1,20 @@
+<% if comment.user %> 
+	<div class="row" style="margin-bottom: 10px; border-bottom: 1px solid silver;" 
+	id="micrpost<%= comment.micropost.id %>_comment<%= comment.id %>">
+	<div class="span1">
+		<%= gravatar_for(comment.user, size:50) %>
+	</div>
+	<div class="span10">
+		<p>
+			<strog><%= link_to(comment.user.username, user_path(comment.user)) %></strong>:<br>
+			<%= comment.body %><br>
+			<small style="color: gray"><i>posted at <%= time_ago_in_words(comment.created_at)%></i></small>
+			<span class="pull-right">
+			  <% if delete_comment_privilege?(comment) %>
+			    <%= link_to "delete", [comment.micropost,comment], :method => :delete, :confirm => "Are you sure to delete the comment?", class:'btn', remote:true %>
+			  <% end %>
+			</span>
+		</p>
+	</div>
+	</div>
+<% end %>

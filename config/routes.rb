@@ -1,4 +1,41 @@
 Flow::Application.routes.draw do
+  
+  get  '/chatroom' => 'chats#room', :as => :chat
+  post '/new_message' => 'chats#new_message', :as => :new_message
+
+  devise_for :users
+
+  match "/users/check_username", to: "users#check_username"
+  match "/users/check_email", to: "users#check_email"
+
+  resources :users do
+    member do
+      get :followings
+      get :followers
+      post :moreposts
+      post :morefollowers
+      post :morefollowings
+    end
+
+    collection do 
+      post :moreusers
+      get :search
+      post :update_activity
+      post :update_last_chat_time
+    end
+  end
+
+  resources :microposts, only:[:create,:destroy] do
+    member do
+      get :repost
+    end
+    resources :comments
+  end
+  resources :micropost_images, only: :create
+  resources :connections, only:[:create,:destroy]
+
+  root :to => 'static#home'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

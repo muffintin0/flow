@@ -1,0 +1,9 @@
+<% if @image.new_record? %>
+  alert("Failed to upload image: <%= j @image.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+  $("#new_micropost_form").append('<input type="hidden" multiple="multiple" name="image_ids[]" value="<%= j @image.id.to_s %>"/>');
+  $('#new_micropost_form input[name="submittingImage"]').val('no');
+  if ( $('#new_micropost_form textarea').val().trim() ){
+  	$('#new_micropost_form').find(':submit').removeClass('disabled').attr('disabled', false);
+  }
+<% end %>

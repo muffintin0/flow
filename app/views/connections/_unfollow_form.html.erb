@@ -1,0 +1,4 @@
+<!-- require passing in following user object -->
+<%= form_for current_user.connections.find_by_following_id(user.id), html:{method: :delete}, remote:true do |f| %>
+	<%= f.submit 'Unfollow', class:'btn btn-primary connection_btns' %>
+<% end %>
