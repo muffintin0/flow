@@ -5,7 +5,8 @@
 <% unless @offset == -1 %> 
 	<div class='row' id="more_post_row">
 		<div class='span2 center'>
-			<%= form_tag(moreposts_user_path(current_user),remote:true) do %>
+			<!-- the user object is passed in -->
+			<%= form_tag(moreposts_user_path(user),remote:true) do %>
 				<div id="more_post_offset">
 				<%= hidden_field_tag 'offset', @offset %>
 				</div>
