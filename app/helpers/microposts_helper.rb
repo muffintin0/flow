@@ -31,7 +31,7 @@ module MicropostsHelper
 		str += render('comments/form',micropost:micropost)
 		str += '</div>'
 		str += "<div id='micropost_comments#{micropost.id}_info' style='display:none;'></div>"
-		str += "<div id='show_micropost_comments#{micropost.id}'></div>"
+		str += "<div class='show_micropost_comments#{micropost.id}'></div>"
 		str += "</div></div>"
 		
 		raw(str)
@@ -39,7 +39,8 @@ module MicropostsHelper
 
 
 	def micropost_content(micropost, options={originial_post:false})
-		content=strip_tags(micropost.body_html)
+		#remove the <p></p> tags around the content
+		content=micropost.body_html.gsub(/<p>/,'').gsub(/<\/p>/,'') 
 		if micropost.original_post
 			micropost.original_post.reposts.each do |repost|
 				if repost.created_at < micropost.created_at
@@ -102,7 +103,7 @@ module MicropostsHelper
 			str += render('comments/form',micropost:micropost)
 			str += '</div>'
 			str += "<div id='micropost_comments#{micropost.id}_info' style='display:none;'></div>"
-			str += "<div id='show_micropost_comments#{micropost.id}'></div>"
+			str += "<div class='show_micropost_comments#{micropost.id}'></div>"
 			str += "</div>"
 
 			raw(str)

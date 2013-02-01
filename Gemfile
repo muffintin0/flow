@@ -6,6 +6,7 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'mysql2'
 
 gem 'bootstrap-sass', '~> 2.2.2.0'
 gem 'faker','1.0.1'
@@ -35,7 +36,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+# the newer jquery 1.9 version does not work with s3_direct_upload gem
+gem 'jquery-rails', '2.1.4'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

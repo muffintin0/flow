@@ -1,2 +1,2 @@
 //$("#micropost_comments<%= @micropost.id %>_form").html("<%= escape_javascript(render('comments/form',micropost:@micropost))%>");
-$("#show_micropost_comments<%= @micropost.id %>").html("<%= escape_javascript(render(@micropost.comments))%>");
+$(".show_micropost_comments<%= @micropost.id %>").html("<%= escape_javascript(render(@micropost.comments))%>");

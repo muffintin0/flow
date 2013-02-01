@@ -67,16 +67,6 @@ ActiveRecord::Schema.define(:version => 20130129185148) do
   add_index "microposts", ["original_post_id"], :name => "index_microposts_on_original_post_id"
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
 
-  create_table "reposts", :id => false, :force => true do |t|
-    t.integer  "id",               :null => false
-    t.integer  "original_post_id", :null => false
-    t.integer  "repost_id",        :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  add_index "reposts", ["original_post_id", "created_at"], :name => "index_reposts_on_original_post_id_and_created_at"
-
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
     t.string   "username",               :default => "",    :null => false
