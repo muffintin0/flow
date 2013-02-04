@@ -1,31 +1,21 @@
 <% provide(:title, "Home") %>
 
 <div class='hero-unit'>
-  <h1>Flow</h1>
+  <h1>Flow <span style="font-size:50%">Twitter like app built with rails</span></h1>
+  <br>
   <p class="lead">
-    Collect all the information you needed. Bookmark
-    your favoriate websites and share latest news with friends. 
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),html:{style:'display:inline;'}) do |f| %>
+      <%= f.hidden_field :email, value:'guest@example.com' %>
+      <%= f.hidden_field :password, value:'password' %>
+      <%= f.submit "Preview", class:"btn" %>
+    <% end %>
+    the app with the guest account. All actions performed by guest account will be removed periodically.
   </p>
   <p>
     <a href="#sign_up_modal" role="button" class="btn btn-large btn-primary" data-toggle="modal" style="font-size: 140%;">Sign up</a>
-    <!--
-    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-large btn-primary" %>
-    -->
   </p>
   Already have an account?
   <a href="#sign_in_modal" data-toggle="modal">Sign in here</a>
-  <!--
-  Already have an account? <%= link_to "Sign in here", new_user_session_path %> -->
-</div>
-
-<div class="row">
-  <div class="span6">
-    <p style="text-align: center" class="well">To come</p>   
-  </div>
-  
-  <div class="span6">
-    <p style="text-align: center" class="well">To come</p>
-  </div>  
 </div>
 
 <!-- sign up modal form -->

@@ -1,5 +1,5 @@
 
 <%= form_for([micropost, micropost.comments.build], remote:true) do |f| %>
-	<%= f.text_area(:body, rows:2, class:"span10", class:"new_comment_textarea" ) %>
+	<%= f.text_area(:body, rows:2, class:"new_comment_textarea span10" ) %>
   <%= f.submit "Publish", disabled: true, class:"btn btn-info disabled"%>
 <% end %>

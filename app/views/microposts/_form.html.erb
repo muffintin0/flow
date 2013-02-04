@@ -1,20 +1,3 @@
-<!--
-// <script>
-//   $(document).ready(function(){
-//     $('#new_micropost_form').find('textarea').bind('hastext', function () {
-//     	if ( $('#new_micropost_form input[name="submittingImage"]').val() == 'no' ){
-//       	$('#new_micropost_form').find(':submit').removeClass('disabled').attr('disabled', false);
-//       }
-//     });
-            
-//     $('#new_micropost_form').find('textarea').bind('notext', function () {
-//       $('#new_micropost_form').find(':submit').addClass('disabled').attr('disabled', true);
-//     });
-
-//   });  
-// </script> -->
-
-
 <div class="span10">
 	<% @micropost=Micropost.new %>
 
@@ -27,7 +10,6 @@
 		 <a href="#addImageModal" class="btn btn-info micropost_form_btns" role="button" data-toggle="modal" id="add_image">Add Images</a>
 		 <input type='hidden' name='submittingImage' value='no' />
 
-		<button class="btn btn-info micropost_form_btns" type="button" id="add_video">Add Videos</button>
 		<%= f.submit '  Publish Post  ',class:'btn btn-primary micropost_form_btns', disabled:'disabled' %>
 		</div>
 	<% end %>
