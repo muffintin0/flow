@@ -20,7 +20,8 @@
   <div class="control-group">
     <%= f.label :password, class:'control-label' %>
     <div class="controls">
-      <%= f.password_field :password, placeholder:'Enter password, 6 characters minimum', class:'span4' %> 
+      <%= f.password_field :password, placeholder:'Enter password, 6 characters minimum', 
+      	class:'span4' %> 
     </div>
   </div>
 
@@ -62,7 +63,7 @@ $(document).ready(function() {
           "user[password_confirmation]":{
               required: true,
               minlength: 6,
-              equalTo: "#user_password"
+              equalTo: "user_password"
           }
       },
       messages: {

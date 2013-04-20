@@ -21,6 +21,7 @@ $(document).ready(function() {
       errorElement: "div",
   });
 
+
   $("#sign_up_modal_form").validate({
       onfocusout: function(element) { $(element).valid(); } ,
 
@@ -41,7 +42,7 @@ $(document).ready(function() {
           "user[password_confirmation]":{
               required: true,
               minlength: 6,
-              equalTo: "#user_password"
+              equalTo: "#password" //the password input id is manually set
           }
       },
       messages: {

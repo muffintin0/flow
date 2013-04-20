@@ -26,8 +26,9 @@
 
   <div class="control-group">
     <%= f.label :password, class:'control-label' %>
+    <!-- Use html so i can set id :( for the password match validation-->
     <div class="controls">
-      <%= f.password_field :password, placeholder:'Enter password, 6 characters minimum', class:'span4' %> 
+    	<input class="span4" id="password" name="user[password]" placeholder="Enter password, 6 characters minimum" size="30" type="password">
     </div>
   </div>
 
@@ -53,7 +54,7 @@
 
 </div>
 
-<!--
+<!-- the inline version juse for debug 
 <script type="text/javascript">
 $(document).ready(function() {
   $("#sign_up_modal_form").validate({
@@ -76,7 +77,7 @@ $(document).ready(function() {
           "user[password_confirmation]":{
               required: true,
               minlength: 6,
-              equalTo: "#user_password"
+              equalTo: '#password'
           }
       },
       messages: {
