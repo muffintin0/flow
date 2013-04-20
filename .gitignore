@@ -16,9 +16,17 @@
 
 # Ignore the config
 /config/database.yml
+
+#precomplie assets before deploying to production. Check the option in application.rb
 /config/application.rb
+
+#for the faye server
+/config/private_pub.yml
+
+#for the email setting
 /config/environments
 
+#for asset pipeline
 /public
 
 # Ignore the font-awesome. Notice the font-awesome has changed to work in production
@@ -27,3 +35,14 @@
 
 # the image url in css are different on ec2
 /app/assets/javascripts/colorbox
+
+.DS_Store
+.project
+/spec/tmp/*
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+.rspec
+.rvmrc
+/vendor/bundle
