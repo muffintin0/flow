@@ -7,7 +7,7 @@ Introduction
 This is an app mocks twitter. It allows user registrations, manage posts and comments and chatting with other usres. The app is stored on Amazon 
 EC2 and can be accessed [here][1].
 
-[1] http://54.235.204.89
+[1]: http://54.235.204.89
 
 Build
 -----
